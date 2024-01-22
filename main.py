@@ -103,10 +103,10 @@ account1 = bank.create_account(customer1)
 account2 = bank.create_account(customer2)
 
 # Deposit and charge on accounts
-account1.deposit(1000)
-account2.deposit(500)
-account1.charge(200)
-account2.charge(100)
+account1.deposit(1200)
+account2.deposit(600)
+account1.charge(300)
+account2.charge(200)
 
 # Transfer funds from account1 to account2
 try:
