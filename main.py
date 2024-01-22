@@ -10,7 +10,6 @@ class Customer:
     def __repr__(self):
         return f'Customer[{self.id}, {self.firstname}, {self.lastname}]'
 
-
 class Account:
     last_id = 1000
 
@@ -35,14 +34,12 @@ class Account:
             raise InvalidAmountException(f'Amount is invalid {amount}')
         if amount > self._balance:
             raise InsufficientFundsException(f'Insufficient balance: {self._balance}')
-
         self._balance -= amount
         transaction = AccountTransaction(self, 'Charge', amount)
         self.transactions.append(transaction)
 
     def __repr__(self):
         return f'Account[{self.id}, {self.customer.lastname}, {self._balance}]'
-
     def get_transaction_history(self):
         return self.transactions
 
@@ -50,17 +47,14 @@ class Bank:
     def __init__(self):
         self.customer_list = []
         self.account_list = []
-
     def create_customer(self, firstname, lastname):
         c = Customer(firstname, lastname)
         self.customer_list.append(c)
         return c
-
     def create_account(self, customer):
         a = Account(customer)
         self.account_list.append(a)
         return a
-
     def transfer(self, from_account_id, to_account_id, amount):
         #TODO
         if type(amount) != int or amount <= 0:
@@ -71,7 +65,6 @@ class Bank:
             raise InsufficientFundsException(f'Insufficient funds in account {from_account_id}')
         from_account.charge(amount)
         to_account.deposit(amount)
-
     def find_account(self, account_id):
         #TODO
         for account in self.account_list:
@@ -81,7 +74,6 @@ class Bank:
 
     def __repr__(self):
         return f'Bank[{self.customer_list}; {self.account_list}]'
-
 class AccountTransaction:
     def __init__(self, account, transaction_type, amount):
         self.account = account
@@ -103,8 +95,8 @@ class InvalidAmountException(BankException):
 bank = Bank()
 
 # Create customers
-customer1 = bank.create_customer("John", "Doe")
-customer2 = bank.create_customer("Jane", "Smith")
+customer1 = bank.create_customer("Adam", "Doe")
+customer2 = bank.create_customer("Ella", "Walter")
 
 # Create accounts for customers
 account1 = bank.create_account(customer1)
